@@ -40,8 +40,8 @@ export class AdManager {
               window.googletag.display(optDiv)
               window.googletag.pubads().refresh([slot])
             } else {
-              window.googletag.enableServices()
-              window.googletag.display(optDiv)
+              //window.googletag.enableServices()
+              //window.googletag.display(optDiv)
             }
 
             slot

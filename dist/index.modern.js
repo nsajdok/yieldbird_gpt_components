@@ -66,9 +66,6 @@ var AdManager = /*#__PURE__*/function () {
               window.googletag.enableServices();
               window.googletag.display(optDiv);
               window.googletag.pubads().refresh([slot]);
-            } else {
-              window.googletag.enableServices();
-              window.googletag.display(optDiv);
             }
 
             slot ? resolve(slot) : reject(new Error('Slot could not be created.'));
