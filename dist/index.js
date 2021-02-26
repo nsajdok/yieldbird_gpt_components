@@ -98,6 +98,7 @@ var AdManager = /*#__PURE__*/function () {
 
     if (typeof window !== 'undefined') {
       this.adsToRefresh[optDiv] = slot;
+      console.log('RefreshSlot', slot);
       this.interval && window.clearInterval(this.interval);
       this.interval = window.setTimeout(function () {
         var slots = Object.keys(_this2.adsToRefresh).map(function (el) {
@@ -193,6 +194,7 @@ var AdManagerSlot = function AdManagerSlot(_ref) {
   var adManagerContext = React.useContext(AdManagerContext);
   React.useEffect(function () {
     var refresh = adManagerContext.shouldRefresh(optDiv);
+    console.log(refresh, adManagerContext);
     AdManager.defineSlot(adUnitPath, size, optDiv, refresh, sizeMapping, targeting).then(function (slot) {
       adManagerContext.registerSlot(slot);
       refresh && adManagerContext.refreshAd(slot, optDiv);

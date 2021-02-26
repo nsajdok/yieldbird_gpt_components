@@ -24,7 +24,7 @@ export const AdManagerSlot: React.FC<Props> = ({
 
   useEffect(() => {
     const refresh = adManagerContext.shouldRefresh(optDiv)
-
+console.log(refresh, adManagerContext);
     AdManager.defineSlot(
       adUnitPath,
       size,

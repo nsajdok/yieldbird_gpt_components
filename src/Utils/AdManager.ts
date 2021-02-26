@@ -71,7 +71,7 @@ export class AdManager {
   public refreshSlot(slot: googletag.Slot, optDiv: string) {
     if (typeof window !== 'undefined') {
       this.adsToRefresh[optDiv] = slot
-
+      console.log('RefreshSlot', slot);
       this.interval && window.clearInterval(this.interval)
       this.interval = window.setTimeout(
         () => {
