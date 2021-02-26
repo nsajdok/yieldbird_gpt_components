@@ -168,7 +168,7 @@ var AdManagerProvider = function AdManagerProvider(_ref) {
   }, [adManager]);
   var shouldRefresh = useCallback(function (optDiv) {
     return adsMap.includes(optDiv);
-  }, adsMap);
+  }, [adsMap]);
   useEffect(function () {
     initializeAdStack(uuid);
   }, [uuid]);

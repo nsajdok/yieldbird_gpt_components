@@ -39,7 +39,7 @@ export const AdManagerProvider: React.FC<Props> = ({
 
   const shouldRefresh = useCallback((optDiv: string) => {
     return adsMap.includes(optDiv)
-  }, adsMap)
+  }, [adsMap])
 
   useEffect(() => {
     initializeAdStack(uuid)
