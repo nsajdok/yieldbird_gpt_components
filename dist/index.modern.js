@@ -66,6 +66,9 @@ var AdManager = /*#__PURE__*/function () {
               window.googletag.enableServices();
               window.googletag.display(optDiv);
               window.googletag.pubads().refresh([slot]);
+            } else {
+              window.googletag.enableServices();
+              window.googletag.display(optDiv);
             }
 
             slot ? resolve(slot) : reject(new Error('Slot could not be created.'));
@@ -95,7 +98,6 @@ var AdManager = /*#__PURE__*/function () {
 
     if (typeof window !== 'undefined') {
       this.adsToRefresh[optDiv] = slot;
-      console.log('RefreshSlot', slot);
       this.interval && window.clearInterval(this.interval);
       this.interval = window.setTimeout(function () {
         var slots = Object.keys(_this2.adsToRefresh).map(function (el) {
@@ -168,7 +170,7 @@ var AdManagerProvider = function AdManagerProvider(_ref) {
   }, [adManager]);
   var shouldRefresh = useCallback(function (optDiv) {
     return adsMap.includes(optDiv);
-  }, [adsMap]);
+  }, adsMap);
   useEffect(function () {
     initializeAdStack(uuid);
   }, [uuid]);
@@ -191,7 +193,6 @@ var AdManagerSlot = function AdManagerSlot(_ref) {
   var adManagerContext = useContext(AdManagerContext);
   useEffect(function () {
     var refresh = adManagerContext.shouldRefresh(optDiv);
-    console.log(refresh, adManagerContext);
     AdManager.defineSlot(adUnitPath, size, optDiv, refresh, sizeMapping, targeting).then(function (slot) {
       adManagerContext.registerSlot(slot);
       refresh && adManagerContext.refreshAd(slot, optDiv);
@@ -201,7 +202,7 @@ var AdManagerSlot = function AdManagerSlot(_ref) {
     return function () {
       AdManager.destroySlot(optDiv);
     };
-  }, [adManagerContext]);
+  }, []);
   return React.createElement("div", {
     id: optDiv,
     className: className
